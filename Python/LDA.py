@@ -17,6 +17,8 @@ from sklearn.preprocessing import StandardScaler
 sc = StandardScaler()
 X_train = sc.fit_transform(X_train)
 X_test = sc.transform(X_test)
+#check out this post: https://towardsdatascience.com/what-and-why-behind-fit-transform-vs-transform-in-scikit-learn-78f915cf96fe
+#for X_train = sc.fit_transform(X_train) and X_test = sc.transform(X_test)
 
 from sklearn.discriminant_analysis import LinearDiscriminantAnalysis as LDA
 
