@@ -1,3 +1,5 @@
+#Acknowledgement: The Summer Programs in Computational Social Science 2021.
+
 def tweet_stream(url, header, params):
   '''
   A helper function that connects to the Twitter API's sampled stream endpoint.
@@ -34,6 +36,26 @@ def get_streaming_tweets(bt=bearer_token,
                          t = None,
                          n = 100):
 
+  '''
+  Function that requests tweets from the unfiltered Twitter spritzer stream.
+  
+  Assumes that one's Twitter dev account bearer token is stored as a string in 
+  a variable called "bearer-token". 
+  
+  You can either pass t, the number of seconds you would like to pull tweets 
+  continuously from the stream, or n, the exact number of tweets you'd like
+  to pull. By default, n is set as 100.
+  
+  Optionally, you can also define "expansions" (list of strings), which will be
+  passed to the API call, making additional information available upon request. 
+  To request that information, also pass a dictionary to "expansion_fields" for 
+  which its keys are the parameter names (e.g. "user.fields") and its values are
+  a list of strings indicating what fields you want to request from those
+  expansions.
+  
+  Returns a list of JSON objects, which can be traversed as a list of dictionaries.
+  '''
+  
   #This is the base url for the sampled stream endpoint
   url = "https://api.twitter.com/2/tweets/sample/stream"
 
