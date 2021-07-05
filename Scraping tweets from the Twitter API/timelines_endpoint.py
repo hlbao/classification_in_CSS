@@ -47,8 +47,8 @@ def get_user_tweets(users,
 
   return responses
 
-#The user IDs of my, Professor Bail's, and Professor Salginik's Twitter accounts, respectively
-users = ["491278138","964635660","4509741"]
+#The user IDs of my Twitter account
+users = ["1240776894288728069"]
 
 results = get_user_tweets(users, start_time="2021-06-01T00:00:01Z",
                           expansions=["author_id"],
@@ -58,37 +58,4 @@ results = get_user_tweets(users, start_time="2021-06-01T00:00:01Z",
 results[0]['data'][0]
 #Print my user information
 results[0]['includes']
-#Print the most recent tweet from Professor Bail's account
-results[1]['data'][0]
-#Print Professor Bail's user information
-results[1]['includes']
-#Print the most recent tweet from Professor Salganik's account
-results[2]['data'][0]
 
-def tweet_stream(url, header, params):
-  '''
-  A helper function that connects to the Twitter API's sampled stream endpoint.
-
-  Returns a generator that yields tweets from the unfiltered spritzer stream.
-  '''
-
-  #Open the ongoing connection to the spritzer stream
-  with requests.request("GET", url, headers=header, 
-                        params=params, stream=True) as response:
-  
-    #If there was an error, print it so we know what's going on
-    if response.status_code != 200:
-        print("Got the following error: {}".format(response.text))
-
-    else:
-
-      #For each tweet that gets returned...
-      for response_item in response.iter_lines():
-        if response_item:
-          tweet = json.loads(response_item)
-
-          #...Pass along the tweet
-          if 'includes' in tweet:
-            yield {**tweet['data'], **tweet['includes']}
-          else:
-            yield tweet['data']
