@@ -1,3 +1,5 @@
+#Acknowledgement: The Summer Programs in Computational Social Science 2021.
+
 bearer_token = "**************** INSERT YOUR BEARER TOKEN HERE ****************"
 
 #tweet_fields = ["text", "public_metrics", "created_at", "author_id", "geo"]
