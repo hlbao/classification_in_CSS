@@ -1,3 +1,32 @@
+def tweet_stream(url, header, params):
+  '''
+  A helper function that connects to the Twitter API's sampled stream endpoint.
+
+  Returns a generator that yields tweets from the unfiltered spritzer stream.
+  '''
+
+  #Open the ongoing connection to the spritzer stream
+  with requests.request("GET", url, headers=header, 
+                        params=params, stream=True) as response:
+  
+    #If there was an error, print it so we know what's going on
+    if response.status_code != 200:
+        print("Got the following error: {}".format(response.text))
+
+    else:
+
+      #For each tweet that gets returned...
+      for response_item in response.iter_lines():
+        if response_item:
+          tweet = json.loads(response_item)
+
+          #...Pass along the tweet
+          if 'includes' in tweet:
+            yield {**tweet['data'], **tweet['includes']}
+          else:
+            yield tweet['data']
+
+
 def get_streaming_tweets(bt=bearer_token,
                          tweet_fields = tweet_fields,
                          expansions = None,
