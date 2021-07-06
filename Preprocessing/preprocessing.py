@@ -5,7 +5,6 @@ import pandas as pd
 pd.options.mode.chained_assignment = None
 import matplotlib.pyplot as plt
 import seaborn as sb
-import requests
 import json
 import nltk
 nltk.download('stopwords')
@@ -18,12 +17,6 @@ from numpy.linalg import LinAlgError
 from scipy.stats import ranksums
 import time
 import multiprocessing as mp
-
-bearer_token = "**************** INSERT YOUR BEARER TOKEN HERE ****************"
-
-tweet_fields = ["text", "public_metrics", "created_at", "author_id", "geo"]
-#tweet_fields = ["text", "public_metrics", "created_at", "author_id", "geo", "attachments", "context_annotations",
-                "conversation_id", "entities", "lang", "possibly_sensitive"]
 
 url = "https://raw.githubusercontent.com/alexlitel/congresstweets-automator/master/data/historical-users-filtered.json"
 
@@ -50,3 +43,6 @@ for entity in meta_dict:
                         'screen_name': account['screen_name'],
                         'account_type': account['account_type']})
       
+#Turn that information into an easy-to-use pandas dataframe
+meta_df = pd.DataFrame(meta_data)
+meta_df
