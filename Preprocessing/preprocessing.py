@@ -17,12 +17,13 @@ from numpy.linalg import LinAlgError
 from scipy.stats import ranksums
 import time
 import multiprocessing as mp
+from google.colab import files
+
 
 url = "https://raw.githubusercontent.com/alexlitel/congresstweets-automator/master/data/historical-users-filtered.json"
 
 #Pull that file and read it into a pandas dataframe
 meta_df = pd.read_json(requests.get(url).text)
-meta_df
 
 #Download the JSON file; url is defined in the above code block
 meta_dict = json.loads(requests.get(url).text)
@@ -45,4 +46,6 @@ for entity in meta_dict:
       
 #Turn that information into an easy-to-use pandas dataframe
 meta_df = pd.DataFrame(meta_data)
-meta_df
+
+meta_df.to_csv('filename.csv') 
+files.download('filename.csv')
