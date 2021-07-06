@@ -22,6 +22,8 @@ import multiprocessing as mp
 bearer_token = "**************** INSERT YOUR BEARER TOKEN HERE ****************"
 
 tweet_fields = ["text", "public_metrics", "created_at", "author_id", "geo"]
+#tweet_fields = ["text", "public_metrics", "created_at", "author_id", "geo", "attachments", "context_annotations",
+                "conversation_id", "entities", "lang", "possibly_sensitive"]
 
 url = "https://raw.githubusercontent.com/alexlitel/congresstweets-automator/master/data/historical-users-filtered.json"
 
