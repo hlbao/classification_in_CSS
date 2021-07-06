@@ -1,4 +1,24 @@
 #Acknowledgement: The Summer Programs in Computational Social Science 2021.
+import requests
+import string
+import numpy as np
+import pandas as pd
+pd.options.mode.chained_assignment = None
+import matplotlib.pyplot as plt
+import seaborn as sb
+import requests
+import json
+import nltk
+nltk.download('stopwords')
+from nltk.corpus import stopwords
+from nltk.tokenize import TweetTokenizer
+from collections import Counter
+import re
+import statsmodels.api as sm
+from numpy.linalg import LinAlgError
+from scipy.stats import ranksums
+import time
+import multiprocessing as mp
 
 bearer_token = "**************** INSERT YOUR BEARER TOKEN HERE ****************"
 
