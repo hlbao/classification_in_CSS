@@ -1,4 +1,28 @@
-#The URL of the raw JSON file we want
+import requests
+import string
+import numpy as np
+import pandas as pd
+pd.options.mode.chained_assignment = None
+import matplotlib.pyplot as plt
+import seaborn as sb
+import requests
+import json
+import nltk
+nltk.download('stopwords')
+from nltk.corpus import stopwords
+from nltk.tokenize import TweetTokenizer
+from collections import Counter
+import re
+import statsmodels.api as sm
+from numpy.linalg import LinAlgError
+from scipy.stats import ranksums
+import time
+import multiprocessing as mp
+
+bearer_token = "**************** INSERT YOUR BEARER TOKEN HERE ****************"
+
+tweet_fields = ["text", "public_metrics", "created_at", "author_id", "geo"]
+
 url = "https://raw.githubusercontent.com/alexlitel/congresstweets-automator/master/data/historical-users-filtered.json"
 
 #Pull that file and read it into a pandas dataframe
@@ -24,29 +48,3 @@ for entity in meta_dict:
                         'screen_name': account['screen_name'],
                         'account_type': account['account_type']})
       
-#Turn that information into an easy-to-use pandas dataframe
-meta_df = pd.DataFrame(meta_data)
-meta_df
-
-#The URLs for all the files begin with this path
-base_url = "https://raw.githubusercontent.com/alexlitel/congresstweets/master/data/"
-
-#The first and last dates we want tweets for
-start_date = "1/1/2020"
-end_date = "12/31/2020"
-
-#Add each date to the base URL and make a list of all the resulting file URLs
-file_names = []
-for d in pd.date_range(start=start_date,end=end_date):
-  yr = str(d.year)
-  mo = str(d.month).zfill(2) #zfill(2) just makes sure that e.g. "1" gets changed into "01"
-  day = str(d.day).zfill(2)
-  end = '-'.join([yr,mo,day]) #'-'.join changes e.g. ['2021','06','22'] to "2021-06-22"
-  file_names.append(base_url + end + '.json')
-
-#Download all of these files and glue them together into one dataframe
-raw_tweet_df = pd.concat([pd.read_json(f) for f in file_names])
-raw_tweet_df
-
-stops = stopwords.words('english')
-#stops
