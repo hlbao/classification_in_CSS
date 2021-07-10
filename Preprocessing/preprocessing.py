@@ -24,8 +24,8 @@ url = "https://raw.githubusercontent.com/alexlitel/congresstweets-automator/mast
 
 #Pull that file and read it into a pandas dataframe
 meta_df = pd.read_json(requests.get(url).text)
-meta_df.to_csv('original.csv') 
-files.download('original.csv')
+#meta_df.to_csv('original.csv') 
+#files.download('original.csv')
 
 #Download the JSON file; url is defined in the above code block
 meta_dict = json.loads(requests.get(url).text)
@@ -49,8 +49,8 @@ for entity in meta_dict:
 #Turn that information into an easy-to-use pandas dataframe
 meta_df = pd.DataFrame(meta_data)
 
-meta_df.to_csv('mete_data.csv') 
-files.download('mete_data.csv')
+#meta_df.to_csv('mete_data.csv') 
+#files.download('mete_data.csv')
 
 #The URLs for all the files begin with this path
 base_url = "https://raw.githubusercontent.com/alexlitel/congresstweets/master/data/"
@@ -71,5 +71,59 @@ for d in pd.date_range(start=start_date,end=end_date):
 #Download all of these files and glue them together into one dataframe
 raw_tweet_df = pd.concat([pd.read_json(f) for f in file_names])
 #raw_tweet_df
-raw_tweet_df.to_csv('raw_tweet.csv') 
-files.download('raw_tweet.csv')
+#raw_tweet_df.to_csv('raw_tweet.csv') 
+#files.download('raw_tweet.csv')
+
+stops = stopwords.words('english')
+stops
+#Add tokens to our list of stop words
+stops += ['.',',','’',':','&','!','qt','-','"','?','“','”',')','(','/',"'",'–',
+          '*',';','‘','>','<']
+
+#Remove tokens from our list of stop words
+for w in ['he','we','she','our','if']:
+  stops.remove(w)
+
+tknzr = TweetTokenizer()
+
+def clean_tweet(s, stops=stops, tknzr=tknzr):
+  #lowercase the string
+  s = s.lower()
+
+  #tokenize the string
+  s = tknzr.tokenize(s)
+
+  #remove stop words
+  s = [w for w in s if w not in stops]
+
+  #remove empty string chunks
+  s = [w for w in s if len(w) > 0]
+
+  return s
+
+#Create a new pandas dataframe with only a couple columns of raw_tweet_df
+tweet_df = raw_tweet_df[['screen_name','time','text']]
+
+#Remove retweets from this new dataframe
+tweet_df = tweet_df[tweet_df.text.apply(lambda x: 'RT @' not in x)]
+
+#Clean the tweets' text
+tweet_df.text = tweet_df.text.apply(clean_tweet)
+
+#Merge tweet_df and meta_df
+df = tweet_df.merge(meta_df, on="screen_name", how="inner")
+
+#Drop all tweets coming from a MoC who is not a Democrat or Republican
+df = df[df.party.apply(lambda x: x in ['D', 'R'])]
+
+#Drop any tweets that were e.g. only stop words
+df = df[df.text.apply(lambda x: len(x) > 0)]
+
+#Split up the time column to make it a little easier to use
+df['date'] = df.time.apply(lambda x: x.split('T')[0])
+df['time'] = df.time.apply(lambda x: x.split('T')[1][:-6])
+
+#Add a column telling us how long each tweet is
+df['length'] = df.text.apply(len)
+df.to_csv('preprocessed.csv') 
+files.download('preprocessed.csv')
