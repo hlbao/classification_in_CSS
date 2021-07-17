@@ -126,4 +126,52 @@ df['time'] = df.time.apply(lambda x: x.split('T')[1][:-6])
 #Add a column telling us how long each tweet is
 df['length'] = df.text.apply(len)
 df.to_csv('preprocessed.csv') 
-files.download('preprocessed.csv')
+#files.download('preprocessed.csv')
+
+# importing library
+import pandas as pd
+# Then loading csv file
+df = pd.read_csv('preprocessed.csv') 
+a = list(df['party'])
+# converting list into string and then joining it with space
+b = ' '.join(str(e) for e in a)
+party_list = b.split()
+
+d = list(df['text'])
+text_original = ' '.join(str(e) for e in d)
+text_list = text_original.split()
+
+#print(party_list)
+#print(text_list)
+
+j=0
+for i in range(len(party_list)):
+    if (party_list[i] == "R"):
+        with open("R_%d.txt" % i, 'w') as f:
+            f.write((text_list[i]))
+
+
+#ok, now we get the set of all Twitter posts (text_list) and their party indicators, R or D, in the party_list
+#text_list is like ["post1", "post2", "post3", ...]
+#party_list is like ["R", "D", "R", ...]
+# their sizes are the same = the number of collected Twitter posts
+
+#there will be multiple text files named by 'R_n.txt'
+#one Twitter post mapping one text file, with the corresponding party indicator, R or D
+
+#R means that this Twitter post belongs to republican
+#n means its order starting from 0
+
+#you should create a folder "R", then include all 'R_n.txt'
+#you should also have a folder "D", do the same thing for the democratic party
+
+#you can pick up 70% of all txt documents in the "R" folder as the training set,
+#the rest 30% is the testing set.
+
+#finally, in the parent folder, "data"
+#you will have two subfolders, "train" and "test"
+#in the train folder, you have two children folders, "R" and "D"
+#the same for the test folder
+
+#So far, we have completed the data preparation. 
+
