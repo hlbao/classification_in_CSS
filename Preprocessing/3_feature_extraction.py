@@ -17,18 +17,6 @@ TOKEN_MODE = 'word'
 MIN_DOCUMENT_FREQUENCY = 2
 
 def ngram_vectorize(train_texts, train_labels, val_texts):
-    """Vectorizes texts as n-gram vectors.
-
-    1 text = 1 tf-idf vector the length of vocabulary of unigrams + bigrams.
-
-    # Arguments
-        train_texts: list, training text strings.
-        train_labels: np.ndarray, training labels.
-        val_texts: list, validation text strings.
-
-    # Returns
-        x_train, x_val: vectorized training and validation texts
-    """
     # Create keyword arguments to pass to the 'tf-idf' vectorizer.
     kwargs = {
             'ngram_range': NGRAM_RANGE,  # Use 1-grams + 2-grams.
