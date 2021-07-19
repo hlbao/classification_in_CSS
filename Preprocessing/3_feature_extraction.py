@@ -6,8 +6,8 @@ from sklearn.feature_selection import f_classif
 # Range (inclusive) of n-gram sizes for tokenizing text.
 NGRAM_RANGE = (1, 2)
 
-# Limit on the number of features. We use the top 20K features.
-TOP_K = 20000
+# Limit on the number of features. We use the top 10K features.
+TOP_K = 10000
 
 # Whether text should be split into word or character n-grams.
 # One of 'word', 'char'.
