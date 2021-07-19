@@ -173,5 +173,7 @@ for i in range(len(party_list)):
 #in the train folder, you have two children folders, "R" and "D"
 #the same for the test folder
 
+#you can also have an "unsup" folder in the train folder, which includes all 'R_n.txt' and 'D_n.txt' documents
+
 #So far, we have completed the data preparation. 
 
