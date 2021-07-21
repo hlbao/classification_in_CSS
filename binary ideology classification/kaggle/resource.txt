@@ -1,0 +1,4 @@
+#https://github.com/vijayaiitk/NLP-text-classification-model/blob/main/NLP%20text%20classification%20model%20Github.ipynb
+
+#https://www.kaggle.com/c/nlp-getting-started/data
+
