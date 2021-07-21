@@ -45,3 +45,11 @@ def ngram_vectorize(train_texts, train_labels, val_texts):
     
 
     return x_train, x_val
+
+#then, you can really check out this page: https://developers.google.com/machine-learning/guides/text-classification/step-4 and the following steps
+#to create your own deep learning and multi-layer neural network model for classification!
+#I will leave this blank as I think such a multi-layer neural network model would be too much for a classification task
+#though that page is still worth reading.
+
+#Also, the previous steps (1 and 2) already help you prepare the same-format data set for use as that in the google developer page.
+#Play with it!!
