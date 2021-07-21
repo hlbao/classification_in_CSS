@@ -51,5 +51,5 @@ def ngram_vectorize(train_texts, train_labels, val_texts):
 #I will leave this blank as I think such a multi-layer neural network model would be too much for a classification task
 #though that page is still worth reading.
 
-#Also, the previous steps (1 and 2) already help you prepare the same-format data set for use as that in the google developer page.
+#Also, the previous steps (1_preprocessing and 2_load_data) already help you prepare the same-format data set for use as that in the google developer page.
 #Play with it!!
