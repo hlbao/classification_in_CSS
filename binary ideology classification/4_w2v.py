@@ -31,7 +31,7 @@ from sklearn.metrics import roc_curve, auc, roc_auc_score
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.feature_extraction.text import CountVectorizer
 
-#for word embedding
+#for word embeddin
 import gensim
 from gensim.models import Word2Vec #Word2Vec is mostly used for huge datasets
 #you can download the data from https://www.dropbox.com/s/o715p3dsr55cxhc/preprocessed.csv?dl=0
@@ -40,9 +40,13 @@ os.chdir('/Users/honglinbao/Desktop/')
 #your own path
 
 df_train=pd.read_csv('preprocessed.csv')
-# create Word2vec model
-
-df_train['clean_text_tok']=[nltk.word_tokenize(i) for i in df_train['text']] 
+for i in df_train["party"]:
+    if (i =="R"):
+        df_train['new_label'][i] ==1
+    else:
+        df_train['new_label'][i] ==0
+    
+df_train['clean_text_tok']=[nltk.word_tokenize((' '.join(i)) for i in df_train['text'])] 
 model = Word2Vec(df_train['clean_text_tok'],min_count=1) 
 w2v = dict(zip(model.wv.index2word, model.wv.syn0))  #combination of word and its vector
 
@@ -65,7 +69,7 @@ class MeanEmbeddingVectorizer(object):
 #SPLITTING THE TRAINING DATASET INTO TRAINING AND VALIDATION
 
 X_train, X_val, y_train, y_val = train_test_split(df_train["text"],
-                                                  df_train["party"],
+                                                  df_train["new_label"],
                                                   test_size=0.3,
                                                   shuffle=True)
 
