@@ -1,7 +1,10 @@
-This is for binary classification with deep learning approaches based on an open-source data set URL = "https://raw.githubusercontent.com/alexlitel/congresstweets-automator/master/data/historical-users-filtered.json."
+This is for binary classification with deep learning approaches based on an open-source data set. 
+
+URL = "https://raw.githubusercontent.com/alexlitel/congresstweets-automator/master/data/historical-users-filtered.json."
+
 Created by Honglin Bao, summer 2021. 
 
-I perform partisan inference (democratic vs. republican, binary) based on Twitter text through NLP techniques.
+I perform partisan inference (democratic vs. republican, binary) based on the Twitter text through NLP techniques. Some cleaned Twitter text data sets have been uploaded.
 
 I perform a complete process of auto-classification:
 
@@ -12,7 +15,7 @@ For details, you can check out: https://www.kdnuggets.com/2019/04/text-preproces
 2. load_data for model use
 3. feature extraction
 4. different representations (vector representations of text, e.g., tf-idf and word2vec) for training/testing data, and the split of training, testing, and validation sets
-5. running different binary classification models (e.g., Naive Beyas and Logistic Regression) with different evaluation matrices (AUC, confusion_matrix, etc.)
+5. running different binary classification models (e.g., Naive Beyas and Logistic Regression) with varying evaluation matrices (AUC, confusion_matrix, etc.)
 
 This is the basis for classification and is widely used in computational social science, e.g., semantic analysis.
 I also perform advanced classification techniques (e.g., multi-class classification or classification with unbalanced/insufficient data). Please check out other folders.
@@ -22,5 +25,6 @@ Acknowledge: The Summer Institutes in Computational Social Science 2021 (https:/
 
 
 Appreciate and welcome any types of contribution/discussion/pull requests!
+
 Contact: baohlcs@gmail.com
 
