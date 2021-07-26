@@ -29,6 +29,19 @@ fpr, tpr, thresholds = roc_curve(y_val, y_prob)
 roc_auc = auc(fpr, tpr)
 print('AUC:', roc_auc)
 
+#FITTING THE CLASSIFICATION MODEL using SVM (tf_idf)
+SVM_tfidf = svm.SVC(C=1.0, kernel='linear', degree=3, gamma='auto')
+SVM_tfidf.fit(X_train_vectors_tfidf, y_train)
+y_predict = SVM_tfidf.predict(X_val_vectors_tfidf)
+y_prob = SVM_tfidf.predict_proba(X_val_vectors_tfidf)[:,1]
+print(classification_report(y_val,y_predict))
+print('Confusion Matrix:',confusion_matrix(y_val, y_predict))
+fpr, tpr, thresholds = roc_curve(y_val, y_prob)
+roc_auc = auc(fpr, tpr)
+print('AUC:', roc_auc)
+# Use accuracy_score function to get the accuracy
+print("SVM Accuracy Score -> ",accuracy_score(y_predict, y_val)*100)
+
 #FITTING THE CLASSIFICATION MODEL using Logistic Regression (w2v)
 lr_w2v=LogisticRegression(solver = 'liblinear', C=1.0, penalty = 'l2')
 lr_w2v.fit(X_train_vectors_w2v, y_train)  #model
@@ -65,15 +78,6 @@ print('AUC:', roc_auc)
 # Use accuracy_score function to get the accuracy
 print("SVM Accuracy Score -> ",accuracy_score(y_predict, y_val)*100)
 
-
-
-
-
-
-#add other classification models further
-
-
-
 #you can choose a random part of the preprocessed table as the test set 
 #for sure, remove the 'party' column
 #or you can keep it to see how accurate your model is 
@@ -84,6 +88,7 @@ X_test=df_test['test_set']
 X_vector=tfidf_vectorizer.transform(X_test) #converting X_test to vector
 y_predict = lr_tfidf.predict(X_vector)      #use the trained model on X_vector
 y_prob = lr_tfidf.predict_proba(X_vector)[:,1]
+#change lr_tfidf to any model you want to test: SVM_tfidf, nb_tfidf, nb_w2v, SVM_w2v, and lr_w2v.
 df_test['predict_prob']= y_prob
 df_test['result']= y_predict
 #print(df_test.head())
