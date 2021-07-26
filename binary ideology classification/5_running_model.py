@@ -80,7 +80,7 @@ print("SVM Accuracy Score -> ",accuracy_score(y_predict, y_val)*100)
 
 #you can choose a random part of the preprocessed table as the test set 
 #for sure, remove the 'party' column
-#or you can keep it to see how accurate your model is 
+#or you can keep the 'party' column to see how accurate your model is 
 #name it as test.csv with the same names for all columns
 df_test=pd.read_csv('test.csv')  
 df_test['test_set']=[(' '.join(i)) for i in df_test['text']] 
@@ -93,4 +93,5 @@ df_test['predict_prob']= y_prob
 df_test['result']= y_predict
 #print(df_test.head())
 final.to_csv('your_final_prediction.csv')
+
 
