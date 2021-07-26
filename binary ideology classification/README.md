@@ -15,7 +15,7 @@ For details, you can check out: https://www.kdnuggets.com/2019/04/text-preproces
 2. load_data for model use
 3. feature extraction
 4. different representations (vector representations of text, e.g., tf-idf and word2vec) for training/testing/validation data, and the split of training, testing, and validation sets
-5. running different binary classification models (e.g., Naive Beyas and Logistic Regression) with varying evaluation matrices (AUC, confusion_matrix, etc.)
+5. comparing the performance of various binary classification models (e.g., Naive Bayes, Logistic Regression, and SVM) using various evaluation matrices (AUC, confusion matrix, accuracy score, etc.) and testing the trained model
 
 This is the basis for classification and is widely used in computational social science, e.g., semantic analysis.
 I also perform advanced classification techniques (e.g., multi-class classification or classification with unbalanced/insufficient data). Please check out other folders.
