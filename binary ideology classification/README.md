@@ -20,7 +20,7 @@ For details, you can check out: https://www.kdnuggets.com/2019/04/text-preproces
 This is the basis for classification and is widely used in computational social science, e.g., semantic analysis.
 I also perform advanced classification techniques (e.g., classification with multiple classes or classification using unbalanced/insufficient data). Please take a look at the other folders. 
 
-I discuss only three of the most frequently used classification methods: Naive Bayes, Logistic Regression, and SVM with tf-idf and word2vec vectorizations. Numerous classification methods, such as multilayer perceptron, kNN, and decision tree, can be used here (see https://en.wikipedia.org/wiki/Statistical classification), but their Python syntax is not significantly different, practically. As a result, I present these three examples just as illustrations. 
+I discuss only three of the most frequently used classification methods: Naive Bayes, Logistic Regression, and SVM with tf-idf and word2vec vectorizations. Numerous classification methods, such as multilayer perceptron, kNN, and decision tree, can be used here (see https://en.wikipedia.org/wiki/Statistical_classification), but their Python syntax is not significantly different, practically. As a result, I present these three examples just as illustrations. 
 
 Acknowledge: The Summer Institutes in Computational Social Science 2021 (https://sicss.io/)
              Google developer documentation: Text classification (https://developers.google.com/machine-learning/guides/text-classification)
