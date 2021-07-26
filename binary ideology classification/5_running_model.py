@@ -55,3 +55,20 @@ print('AUC:', roc_auc)
 
 #add other classification models further
 
+
+
+#you can choose a random part of the preprocessed table as the test set 
+#for sure, remove the 'party' column
+#or you can keep it to see how accurate your model is 
+#name it as test.csv with the same names for all columns
+df_test=pd.read_csv('test.csv')  
+df_test['test_set']=[(' '.join(i)) for i in df_test['text']] 
+X_test=df_test['test_set']
+X_vector=tfidf_vectorizer.transform(X_test) #converting X_test to vector
+y_predict = lr_tfidf.predict(X_vector)      #use the trained model on X_vector
+y_prob = lr_tfidf.predict_proba(X_vector)[:,1]
+df_test['predict_prob']= y_prob
+df_test['result']= y_predict
+#print(df_test.head())
+final.to_csv('your_final_prediction.csv')
+
