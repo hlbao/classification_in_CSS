@@ -39,6 +39,8 @@ import os
 os.chdir('/Users/honglinbao/Desktop/')
 #your own path
 
+from google.colab import files
+uploaded = files.upload()
 df_train=pd.read_csv('preprocessed.csv')
 for i in df_train["party"]:
     if (i =="R"):
