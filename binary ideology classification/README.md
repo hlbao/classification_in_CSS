@@ -6,7 +6,7 @@ Created by Honglin Bao, summer 2021.
 
 I perform partisan inference (democratic vs. republican, binary) based on the Twitter text through NLP techniques. 
 
-Some cleaned Twitter text data sets have been uploaded, see preprocessed.txt and metadata.csv.
+Some cleaned Twitter text data sets have been uploaded, see preprocessed.txt (You will mostly play with it).
 
 I perform a complete process of auto-classification:
 
@@ -31,4 +31,3 @@ Acknowledge: The Summer Institutes in Computational Social Science 2021 (https:/
 Appreciate and welcome any types of contribution/discussion/pull requests!
 
 Contact: baohlcs@gmail.com
-
