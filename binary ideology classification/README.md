@@ -6,7 +6,7 @@ Created by Honglin Bao, summer 2021.
 
 I perform partisan inference (democratic vs. republican, binary) based on the Twitter text through NLP techniques. 
 
-Several cleaned Twitter text data sets have been uploaded; see preprocessed.txt for more information (You will mostly play with it). Other data sets are either left uncleaned (original.csv, raw tweet.txt) or contain "redundant" features for this binary classification task. Note that these features may be beneficial for a variety of other tasks. As a result, I upload them as well for future reference.
+Several cleaned Twitter text data sets have been uploaded; see preprocessed.txt for more information (You will mostly play with it). Other data sets are either left unclean (raw tweet.txt) or contain only features for the data set statistics, allowing you to quickly see how this data set looks (e.g., whether the data set is balanced).
 
 I perform a complete process of auto-classification:
 
