@@ -4,7 +4,9 @@ URL = "https://raw.githubusercontent.com/alexlitel/congresstweets-automator/mast
 
 Created by Honglin Bao, summer 2021. 
 
-I perform partisan inference (democratic vs. republican, binary) based on the Twitter text through NLP techniques. Some cleaned Twitter text data sets have been uploaded.
+I perform partisan inference (democratic vs. republican, binary) based on the Twitter text through NLP techniques. 
+
+Some cleaned Twitter text data sets have been uploaded.
 
 I perform a complete process of auto-classification:
 
