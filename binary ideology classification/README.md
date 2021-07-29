@@ -10,7 +10,7 @@ Several cleaned Twitter text data sets have been uploaded; for more information,
 
 I perform a complete process of auto-classification:
 
-1. Pre-processing, converting text to lowercase, removing stop words, noise, retweets, and punctuation, and so forth. Nota that certain steps of preprocessing are not always necessary and add little to the final accuracy. It truly depends on the nature of the task at hand. For additional information, please visit https://www.kdnuggets.com/2019/04/text-preprocessing-nlp-machine-learning.html
+1. Pre-processing, converting text to lowercase, removing stop words/noise (e.g., meme)/retweets/punctuation, and so forth. Note that certain steps of preprocessing are not always necessary and add little to the final accuracy. It truly depends on the nature of the task at hand. For additional information, please visit https://www.kdnuggets.com/2019/04/text-preprocessing-nlp-machine-learning.html
 2. load_data for model use
 3. feature extraction
 4. different representations (vector representations of text, e.g., tf-idf and word2vec) for training/testing/validation data, and the split of training, testing, and validation sets
