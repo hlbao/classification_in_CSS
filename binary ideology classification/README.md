@@ -14,7 +14,7 @@ I perform a complete process of auto-binary-classification:
 2. load_data for model use
 3. feature extraction
 4. different representations (vector representations of text, e.g., tf-idf and word2vec) for training/testing/validation data, and the split of training, testing, and validation sets
-5. comparing the performance of various binary classification models (e.g., Naive Bayes, Logistic Regression, and SVM) using various evaluation matrices (AUC, confusion matrix, accuracy score, etc.) and testing the trained model. The final accuracy for the Naive Bayes model is around 78%.
+5. comparing the performance of various binary classification models (e.g., Naive Bayes, Logistic Regression, and SVM) using various evaluation matrices (AUC, confusion matrix, accuracy score, etc.) and testing the trained model. The final accuracy for the Naive Bayes model is around 78%
 
 This is the basis for classification and is widely used in computational social science, e.g., semantic analysis.
 I also perform advanced classification techniques (e.g., classification with multiple classes or classification using unbalanced/insufficient data). Please take a look at other folders. 
