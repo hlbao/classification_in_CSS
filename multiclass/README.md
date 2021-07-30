@@ -1,4 +1,4 @@
-This is for multi-class classification with machine learning approaches based on a benchmark data set. 
+This is for multi-class classification with machine learning approaches based on a benchmark data set on Kaggle.  
 
 URL = "https://www.kaggle.com/c/jigsaw-toxic-comment-classification-challenge/data"
 
@@ -18,5 +18,3 @@ removing special characters/stop words/permutations, expanding contractions, and
 Note that certain steps of preprocessing are not always necessary and add little to the final accuracy. 
 It truly depends on the nature of the task at hand. 
 For additional information, please visit https://www.kdnuggets.com/2019/04/text-preprocessing-nlp-machine-learning.html
-
-
