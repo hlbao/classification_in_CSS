@@ -15,7 +15,7 @@ I carry out a complete auto-multiclass-classification procedure:
 converting text to lowercase, 
 removing special characters/stop words/permutations, expanding contractions, and so forth. 
 "cleaned.jpeg" illustrates the appearance of the preprocessed data set.
-Additionally, the data set of cleaned comment text has been uploaded. Please refer to cleaned.txt.
+Additionally, the data set of cleaned comment text has been uploaded. Please refer to cleaned.txt
 
 
 Note that certain steps of preprocessing are not always necessary and add little to the final accuracy. 
