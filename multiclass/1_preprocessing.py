@@ -145,7 +145,6 @@ for sentence in tqdm(train_df['comment_text'].values):
     sentence = re.sub("\S*\d\S*", "", sentence).strip()
     sentence = re.sub('[^A-Za-z]+', ' ', sentence)
     sentence = ''.join(''.join(s)[:2] for _, s in itertools.groupby(sentence))
-    #sentence = ' '.join(e.lower() for e in sentence.split() if e.lower() not in stopwords)
     preprocessed_comments.append(sentence.strip())
 
 train_df.to_csv('cleaned.csv') 
