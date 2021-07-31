@@ -12,7 +12,8 @@ final_counts = count_vect.transform(preprocessed_comments)
 count_vect = CountVectorizer(ngram_range=(1,2), min_df=10, max_features=5000)
 final_bigram_counts = count_vect.fit_transform(preprocessed_comments)
 
-tf_idf_vect = TfidfVectorizer(ngram_range=(1,2), min_df=10)
+#tf_idf_vect = TfidfVectorizer(ngram_range=(1,2), min_df=10)
+tf_idf_vect = TfidfVectorizer()
 tf_idf_vect.fit(preprocessed_comments)
 final_tf_idf = tf_idf_vect.transform(preprocessed_comments)
 
