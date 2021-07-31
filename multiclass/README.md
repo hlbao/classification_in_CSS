@@ -15,6 +15,9 @@ I carry out a complete auto-multiclass-classification procedure:
 converting text to lowercase, 
 removing special characters/stop words/permutations, expanding contractions, and so forth. 
 "cleaned.jpeg" illustrates the appearance of the preprocessed data set.
+Also, the cleaned comment text data set has been uploaded.
 Note that certain steps of preprocessing are not always necessary and add little to the final accuracy. 
 It truly depends on the nature of the task at hand. 
 For additional information, please visit https://www.kdnuggets.com/2019/04/text-preprocessing-nlp-machine-learning.html
+
+2. different representations (vector representations of text, e.g., tf-idf and bag-of-words), the split of training, testing, and validation sets, and feature extraction.
