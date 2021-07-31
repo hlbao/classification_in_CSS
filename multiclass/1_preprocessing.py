@@ -36,6 +36,7 @@ from sklearn.model_selection import train_test_split
 from wordcloud import WordCloud,STOPWORDS
 import warnings
 warnings.filterwarnings("ignore")
+from google.colab import files
 
 import nltk
 from nltk.corpus import stopwords
@@ -106,9 +107,6 @@ def removeStopWords(sentence):
     global re_stop_words
     return re_stop_words.sub(" ", sentence)
 
-train_df['comment_text'] = train_df['comment_text'].apply(removeStopWords)
-train_df.head()
-
 stemmer = SnowballStemmer("english")
 def stemming(sentence):
     stemSentence = ""
@@ -133,3 +131,24 @@ def decontracted(phrase):
     phrase = re.sub(r"\'ve", " have", phrase)
     phrase = re.sub(r"\'m", " am", phrase)
     return phrase
+    
+train_df['comment_text'] = train_df['comment_text'].apply(removeStopWords)
+train_df['comment_text'] = train_df['comment_text'].apply(stemming)
+train_df['comment_text'] = train_df['comment_text'].apply(decontracted)
+train_df.head()
+df.to_csv('cleaned.csv') 
+files.download('cleaned.csv')
+
+import itertools
+from bs4 import BeautifulSoup
+from tqdm import tqdm
+preprocessed_comments = []
+for sentence in tqdm(train_df['comment_text'].values):
+    sentence = re.sub(r"http\S+", "", sentence)
+    sentence = BeautifulSoup(sentence, 'lxml').get_text()
+    sentence = decontracted(sentence)
+    sentence = re.sub("\S*\d\S*", "", sentence).strip()
+    sentence = re.sub('[^A-Za-z]+', ' ', sentence)
+    sentence = ''.join(''.join(s)[:2] for _, s in itertools.groupby(sentence))
+    sentence = ' '.join(e.lower() for e in sentence.split() if e.lower() not in stopwords)
+    preprocessed_comments.append(sentence.strip())
