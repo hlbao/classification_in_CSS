@@ -26,4 +26,4 @@ For additional information, please visit https://www.kdnuggets.com/2019/04/text-
 
 3. comparing the performance of various multi-class classification models (e.g., Multinomial Naive Bayes, Logistic Regression, RandomForest, and Support Vector Classification) using the AUC evaluation matrix and testing your trained model.  Additionally, I perform several multilabel classification methods, including Label Powerset, Binary Relevance, and Classifier Chain. This is because latent connections exist between multi-class and multilabel classification methods: "For each label combination in the training set, the label powerset transformation generates a binary classifier. For instance, if the possible labels for an example are A, B, and C, the label powerset representation of this problem is a multi-class classification problem with the classes [0 0 0], [1 0 0], [0 1 0], [0 0 1], [1 0 1], [0 1 1]. [1 1 1], where [1 0 1] denotes an instance in which labels A and C are present but label B is not." https://www.sciencedirect.com/science/article/pii/S1571066113000121?via%3Dihub
 
-4. deep learnig-based approach.
+4. deep learning-based approach.
