@@ -44,7 +44,8 @@ for i, label_name in enumerate(label_col):
     valid_rocs.append(valid_roc_class)
     # test predictions
     preds_test[:,i] = model.predict_proba(X_test)[:,1]
-print('\nmean column-wise ROC AUC on Train data: ', np.mean(train_rocs))
-print('mean column-wise ROC AUC on Val data:', np.mean(valid_rocs))
-
+    
+    
+print(np.mean(train_rocs))
+print(np.mean(valid_rocs))
 
