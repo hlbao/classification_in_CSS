@@ -75,8 +75,7 @@ uploaded = files.upload()
 
 df_test=pd.read_csv('test_cleaned.csv')  
 X_test=df_test['comment_text']
-tfidf_vectorizer = TfidfVectorizer(use_idf=True)
-X_vector= tfidf_vectorizer.transform(X_test) #converting X_test to vector
+X_vector= tf_idf_vect.transform(X_test) #converting X_test to vector
 y_predict = model.predict(X_vector)      #use the trained model on X_vector
 y_prob = model.predict_proba(X_vector)[:,1]
 df_test['predict_prob']= y_prob
