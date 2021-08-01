@@ -45,7 +45,41 @@ for i, label_name in enumerate(label_col):
     # test predictions
     preds_test[:,i] = model.predict_proba(X_test)[:,1]
     
-    
 print(np.mean(train_rocs))
 print(np.mean(valid_rocs))
 
+#process text set and test your trained model
+from google.colab import files
+uploaded = files.upload()
+test_df=pd.read_csv('test.csv')  
+test_df['comment_text'] = test_df['comment_text'].str.lower()
+test_df['comment_text'] = test_df['comment_text'].apply(cleanHtml)
+test_df['comment_text'] = test_df['comment_text'].apply(cleanPunc)
+test_df['comment_text'] = test_df['comment_text'].apply(keepAlpha)
+test_df['comment_text'] = test_df['comment_text'].apply(removeStopWords)
+import itertools
+from bs4 import BeautifulSoup
+from tqdm import tqdm
+preprocessed_comments = []
+for sentence in tqdm(test_df['comment_text'].values):
+    sentence = re.sub(r"http\S+", "", sentence)
+    sentence = BeautifulSoup(sentence, 'lxml').get_text()
+    sentence = decontracted(sentence)
+    sentence = re.sub("\S*\d\S*", "", sentence).strip()
+    sentence = re.sub('[^A-Za-z]+', ' ', sentence)
+    sentence = ''.join(''.join(s)[:2] for _, s in itertools.groupby(sentence))
+    preprocessed_comments.append(sentence.strip())   
+test_df.to_csv('test_cleaned.csv') 
+files.download('test_cleaned.csv')
+uploaded = files.upload()
+
+df_test=pd.read_csv('test_cleaned.csv')  
+X_test=df_test['comment_text']
+tfidf_vectorizer = TfidfVectorizer(use_idf=True)
+X_vector= tfidf_vectorizer.transform(X_test) #converting X_test to vector
+y_predict = model.predict(X_vector)      #use the trained model on X_vector
+y_prob = model.predict_proba(X_vector)[:,1]
+df_test['predict_prob']= y_prob
+df_test['result']= y_predict
+#print(df_test.head())
+df_test.to_csv('your_final_prediction.csv')
