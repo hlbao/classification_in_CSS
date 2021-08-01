@@ -92,6 +92,6 @@ y_prob = lr_tfidf.predict_proba(X_vector)[:,1]
 df_test['predict_prob']= y_prob
 df_test['result']= y_predict
 #print(df_test.head())
-final.to_csv('your_final_prediction.csv')
+df_test.to_csv('your_final_prediction.csv')
 
 
