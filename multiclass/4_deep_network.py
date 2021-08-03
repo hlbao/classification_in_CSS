@@ -12,7 +12,7 @@ model = Sequential()
 model.add(Embedding(MAX_NB_WORDS, EMBEDDING_DIM, input_length=train_df[features].shape[1]))
 model.add(SpatialDropout1D(0.2))
 model.add(LSTM(100, dropout=0.2, recurrent_dropout=0.2))
-model.add(Dense(13, activation='softmax'))
+model.add(Dense(5, activation='softmax'))
 model.compile(loss='categorical_crossentropy', optimizer='adam', metrics=['accuracy'])
 #print(model.summary())
 epochs = 5
