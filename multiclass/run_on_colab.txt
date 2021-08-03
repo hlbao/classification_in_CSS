@@ -7,12 +7,6 @@ Saving train.csv to train (6).csv
 test.csv
 test.csv(text/csv) - 60354593 bytes, last modified: 1/18/2018 - 100% done
 Saving test.csv to test (3).csv
-id	comment_text	toxic	severe_toxic	obscene	threat	insult	identity_hate
-0	0000997932d777bf	explanation why the edits made under my userna...	0	0	0	0	0	0
-1	000103f0d9cfb60f	daww he matches this background colour im seem...	0	0	0	0	0	0
-2	000113f07ec002fd	hey man im really not trying to edit war its j...	0	0	0	0	0	0
-3	0001b41b1c6bb37e	more i cant make any real suggestions on impro...	0	0	0	0	0	0
-4	0001d958c54c6e35	you sir are my hero any chance you remember wh...	0	0	0	0	0	0
 
   0%|          | 0/159571 [00:00<?, ?it/s]
   0%|          | 216/159571 [00:00<01:13, 2159.71it/s]
