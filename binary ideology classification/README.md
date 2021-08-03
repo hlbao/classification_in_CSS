@@ -17,7 +17,7 @@ I carry out a complete auto-multiclass-classification procedure:
 5. comparing the performance of various binary classification models (e.g., Naive Bayes, Logistic Regression, and SVM) using various evaluation matrices (AUC, confusion matrix, accuracy score, etc.) and testing the trained model. The final accuracy for the Naive Bayes model is around 78%
 
 This is the basis for classification and is widely used in computational social science, e.g., semantic analysis.
-I also perform advanced classification techniques (e.g., classification with multiple classes or classification using unbalanced/insufficient data). Please take a look at other folders. 
+I also perform advanced classification techniques (e.g., classification with multiple classes or using imbalanced/insufficient data). Please take a look at other folders. 
 
 I discuss only three of the most frequently used classification methods: Naive Bayes, Logistic Regression, and SVM with tf-idf and word2vec vectorizations. Numerous classification methods, such as multilayer perceptron, kNN, and decision tree, can be used here (see https://en.wikipedia.org/wiki/Statistical_classification), but their Python syntax is not significantly different, practically. As a result, I present these three examples just as illustrations. 
 
