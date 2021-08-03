@@ -58,6 +58,13 @@ train_df = pd.read_csv('train.csv')
 #print('Features: ', train_df.columns.values)
 #train_df.head(10)
 
+from google.colab import files
+uploaded = files.upload()
+test_df = pd.read_csv('test.csv')
+#print('Number of data points : ', test_df.shape[0])
+#print('Number of features : ', test_df.shape[1])
+#print('Features : ', test_df.columns.values)
+
 def cleanHtml(sentence):
     cleanr = re.compile('<.*?>')
     cleantext = re.sub(cleanr, ' ', str(sentence))
