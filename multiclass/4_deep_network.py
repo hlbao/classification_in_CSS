@@ -28,6 +28,13 @@ cufflinks.set_config_file(world_readable=True, theme='pearl')
 #should be attached to 2_representations.py
 #I separate them for clear illustration reasons.
 
+# The maximum number of words to be used. (most frequent)
+MAX_NB_WORDS = 50000
+# Max number of words in each comment.
+MAX_SEQUENCE_LENGTH = 250
+# This is fixed.
+EMBEDDING_DIM = 100
+
 X_train, X_val, y_train, y_val = train_test_split(train_df[features], train_df[label_col], test_size=0.2, random_state=2021)
 X_train = tf_idf_vect.transform(X_train['comment_text'])
 X_val = tf_idf_vect.transform(X_val['comment_text'])
