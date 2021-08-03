@@ -50,5 +50,15 @@ model.compile(loss='categorical_crossentropy', optimizer='adam', metrics=['accur
 #print(model.summary())
 epochs = 5
 batch_size = 64
-lstm_model = model.fit(X_train, y_train, epochs=epochs, batch_size=batch_size,validation_split=0.1,callbacks=[EarlyStopping(monitor='val_loss', patience=3, min_delta=0.0001)])
+
+#converting your labels to arrays before calling model.fit()
+X_train= np.array(X_train, dtype=object)
+y_train= np.array(y_train, dtype=object)
+X_val = np.array(X_val, dtype=object)
+y_val = np.array(y_val, dtype=object)
+
+lstm_model = model.fit(X_train, y_train, epochs=epochs, batch_size=batch_size,validation_split=0.0,callbacks=[EarlyStopping(monitor='val_loss', patience=3, min_delta=0.0001)])
 accr = model.evaluate(X_test,y_test)
+#note: if you are working on TensorFlow 2.1.0, the above converting code will give you an error, i.e., 
+#ValueError: Failed to convert a NumPy array to a Tensor (Unsupported object type float) (located at the line of model.fit())
+#I run my code on TensorFlow 2.0.0.beta1
