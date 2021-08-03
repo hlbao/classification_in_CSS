@@ -16,7 +16,6 @@ from nltk import word_tokenize
 STOPWORDS = set(stopwords.words('english'))
 from bs4 import BeautifulSoup
 import plotly.graph_objs as go
-import plotly.plotly as py
 import cufflinks
 from IPython.core.interactiveshell import InteractiveShell
 import plotly.figure_factory as ff
