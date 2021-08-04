@@ -25,8 +25,17 @@ cufflinks.go_offline()
 cufflinks.set_config_file(world_readable=True, theme='pearl')
 
 #run deep learning
-#should be attached to 2_representations.py
+#should be attached to 3_machine_learning_models.py
 #I separate them for clear illustration reasons.
+
+#re-organize data set
+sub_df_rf.iloc[:,1:] = preds_test
+sub_df_rf.to_csv('submission_rf.csv')
+uploaded = files.upload()
+final_submission_combined_updated = pd.read_csv('sample_submission.csv')
+for label in label_col:
+    final_submission_combined_updated[label] = 0.5*(sub_df_mnb[label]+sub_df_lr[label])
+final_submission_combined_updated.to_csv('final_submission_combined_updated.csv', index=False)
 
 # The maximum number of words to be used. (most frequent)
 MAX_NB_WORDS = 50000
@@ -41,27 +50,28 @@ X_val = tf_idf_vect.transform(X_val['comment_text'])
 X_test = tf_idf_vect.transform(X_test['comment_text'])
 feature_names = tf_idf_vect.get_feature_names()
 
-from google.colab import files
-uploaded = files.upload()
-sub_df_mnb = pd.read_csv('sample_submission.csv')
+#you might need this (line 58-61) -- depending on which version of TensorFlow you are working with
+#converting your labels to arrays before calling model.fit()
+#f you are working on TensorFlow 2.1.0, the following converting code will give you an ERROR, i.e., 
+#ValueError: Failed to convert a NumPy array to a Tensor (Unsupported object type float) (located at the line of model.fit())
+#I run my code on TensorFlow 2.0.0.beta1
+X_train = np.asarray(X_train).astype('float32')
+y_train = np.asarray(y_train).astype('float32')
+X_val = np.asarray(X_val).astype('float32')
+y_val = np.asarray(y_val).astype('float32')
 
 model = Sequential()
 #model.add(Embedding(MAX_NB_WORDS, EMBEDDING_DIM, input_length=train_df[features].shape[1]))
-model.add(Dense(4, activation='relu', input_dim = X_train.shape[1]))
-model.add(Dropout(0.3))
+#if you are working with the LSTM network, then you should first have an embedding layer
+#Dense(input_dim = X_train.shape[1]) will also help you to re-shape your data for the case of dense-dropout-dense
+model.add(Dense(6, activation='relu', input_dim = X_train.shape[1]))
+model.add(Dropout(0.2))
 #model.add(LSTM(100, dropout=0.2, recurrent_dropout=0.2))
 model.add(Dense(6, activation='softmax'))
 model.compile(loss='categorical_crossentropy', optimizer='adam', metrics=['accuracy'])
 #print(model.summary())
 epochs = 10
 batch_size = 32
-
-#you might need this, depends which version of tenserflow you are working with
-#converting your labels to arrays before calling model.fit()
-X_train = np.asarray(X_train).astype('float32')
-y_train = np.asarray(y_train).astype('float32')
-X_val = np.asarray(X_val).astype('float32')
-y_val = np.asarray(y_val).astype('float32')
 
 lstm_model = model.fit(X_train, y_train, epochs=epochs, batch_size=batch_size)
 #lstm_model = model.fit(X_train, y_train, epochs=epochs, batch_size=batch_size,validation_split=0.0,callbacks=[EarlyStopping(monitor='val_loss', patience=3, min_delta=0.0001)])
