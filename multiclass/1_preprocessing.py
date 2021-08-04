@@ -14,7 +14,8 @@ import scipy.stats as ss
 import matplotlib.pyplot as plt
 import matplotlib.gridspec as gridspec 
 import seaborn as sns
-from wordcloud import WordCloud, STOPWORDS
+from wordcloud import WordCloud ,STOPWORDS
+from PIL import Image
 import string
 import re
 import nltk
@@ -36,7 +37,13 @@ from sklearn.model_selection import train_test_split
 from wordcloud import WordCloud,STOPWORDS
 import warnings
 warnings.filterwarnings("ignore")
+
 from google.colab import files
+uploaded = files.upload()
+train_df = pd.read_csv('train.csv')
+from google.colab import files
+uploaded = files.upload()
+test_df = pd.read_csv('test.csv')
 
 import nltk
 from nltk.corpus import stopwords
@@ -46,24 +53,6 @@ import sys
 import warnings
 if not sys.warnoptions:
     warnings.simplefilter("ignore")
-
-nltk.download('stopwords')
-
-from google.colab import files
-uploaded = files.upload()
-
-train_df = pd.read_csv('train.csv')
-#print('Number of data: ', train_df.shape[0])
-#print('Number of features: ', train_df.shape[1])
-#print('Features: ', train_df.columns.values)
-#train_df.head(10)
-
-from google.colab import files
-uploaded = files.upload()
-test_df = pd.read_csv('test.csv')
-#print('Number of data points : ', test_df.shape[0])
-#print('Number of features : ', test_df.shape[1])
-#print('Features : ', test_df.columns.values)
 
 def cleanHtml(sentence):
     cleanr = re.compile('<.*?>')
@@ -90,10 +79,29 @@ train_df['comment_text'] = train_df['comment_text'].str.lower()
 train_df['comment_text'] = train_df['comment_text'].apply(cleanHtml)
 train_df['comment_text'] = train_df['comment_text'].apply(cleanPunc)
 train_df['comment_text'] = train_df['comment_text'].apply(keepAlpha)
-train_df.head()
 
-#stop_words = set(stopwords.words('english'))
-stop_words= set(['br', 'the', 'i', 'me', 'my', 'myself', 'we', 'our', 'ours', 'ourselves', 'you', "you're", "you've",\
+stop_words = set(stopwords.words('english'))
+stop_words.update(['zero','one','two','three','four','five','six','seven','eight','nine','ten','may','also','across','among','beside','however','yet','within'])
+re_stop_words = re.compile(r"\b(" + "|".join(stop_words) + ")\\W", re.I)
+def removeStopWords(sentence):
+    global re_stop_words
+    return re_stop_words.sub(" ", sentence)
+
+train_df['comment_text'] = train_df['comment_text'].apply(removeStopWords)
+
+stemmer = SnowballStemmer("english")
+def stemming(sentence):
+    stemSentence = ""
+    for word in sentence.split():
+        stem = stemmer.stem(word)
+        stemSentence += stem
+        stemSentence += " "
+    stemSentence = stemSentence.strip()
+    return stemSentence
+
+train_df['comment_text'] = train_df['comment_text'].apply(stemming)
+
+stopwords= set(['br', 'the', 'i', 'me', 'my', 'myself', 'we', 'our', 'ours', 'ourselves', 'you', "you're", "you've",\
             "you'll", "you'd", 'your', 'yours', 'yourself', 'yourselves', 'he', 'him', 'his', 'himself', \
             'she', "she's", 'her', 'hers', 'herself', 'it', "it's", 'its', 'itself', 'they', 'them', 'their',\
             'theirs', 'themselves', 'what', 'which', 'who', 'whom', 'this', 'that', "that'll", 'these', 'those', \
@@ -107,23 +115,9 @@ stop_words= set(['br', 'the', 'i', 'me', 'my', 'myself', 'we', 'our', 'ours', 'o
             've', 'y', 'ain', 'aren', "aren't", 'couldn', "couldn't", 'didn', "didn't", 'doesn', "doesn't", 'hadn',\
             "hadn't", 'hasn', "hasn't", 'haven', "haven't", 'isn', "isn't", 'ma', 'mightn', "mightn't", 'mustn',\
             "mustn't", 'needn', "needn't", 'shan', "shan't", 'shouldn', "shouldn't", 'wasn', "wasn't", 'weren', "weren't", \
-            'won', "won't", 'wouldn', "wouldn't", 'zero','one','two','three','four','five','six','seven','eight','nine','ten','may','also','across','among','beside','however','yet','within'])
+            'won', "won't", 'wouldn', "wouldn't"])
 
-re_stop_words = re.compile(r"\b(" + "|".join(stop_words) + ")\\W", re.I)
-def removeStopWords(sentence):
-    global re_stop_words
-    return re_stop_words.sub(" ", sentence)
-
-stemmer = SnowballStemmer("english")
-def stemming(sentence):
-    stemSentence = ""
-    for word in sentence.split():
-        stem = stemmer.stem(word)
-        stemSentence += stem
-        stemSentence += " "
-    stemSentence = stemSentence.strip()
-    return stemSentence
-    
+import re
 def decontracted(phrase):
 # specific
     phrase = re.sub(r"won't", "will not", phrase)
@@ -138,8 +132,6 @@ def decontracted(phrase):
     phrase = re.sub(r"\'ve", " have", phrase)
     phrase = re.sub(r"\'m", " am", phrase)
     return phrase
-    
-train_df['comment_text'] = train_df['comment_text'].apply(removeStopWords)
 
 import itertools
 from bs4 import BeautifulSoup
@@ -152,6 +144,8 @@ for sentence in tqdm(train_df['comment_text'].values):
     sentence = re.sub("\S*\d\S*", "", sentence).strip()
     sentence = re.sub('[^A-Za-z]+', ' ', sentence)
     sentence = ''.join(''.join(s)[:2] for _, s in itertools.groupby(sentence))
+    # https://gist.github.com/sebleier/554280
+    sentence = ' '.join(e.lower() for e in sentence.split() if e.lower() not in stopwords)
     preprocessed_comments.append(sentence.strip())
 
 train_df.to_csv('cleaned.csv') 
