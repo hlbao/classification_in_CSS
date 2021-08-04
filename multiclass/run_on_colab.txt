@@ -43,4 +43,3 @@ dense_8 (Dense)              (None, 6)                 30
 Total params: 270,294
 Trainable params: 270,294
 Non-trainable params: 0
-_________________________________________________________________
