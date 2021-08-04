@@ -63,7 +63,7 @@ y_val = np.asarray(y_val).astype('float32')
 model = Sequential()
 #model.add(Embedding(MAX_NB_WORDS, EMBEDDING_DIM, input_length=train_df[features].shape[1]))
 #if you are working with the LSTM network, then you should first have an embedding layer
-#Dense(input_dim = X_train.shape[1]) will also help you to re-shape your data for the case of dense-dropout-dense
+#Dense(input_dim = X_train.shape[1]) will also help you to re-shape your data before calling model.fit() for the case of dense-dropout-dense
 model.add(Dense(6, activation='relu', input_dim = X_train.shape[1]))
 model.add(Dropout(0.2))
 #model.add(LSTM(100, dropout=0.2, recurrent_dropout=0.2))
