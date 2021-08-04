@@ -28,7 +28,7 @@ cufflinks.set_config_file(world_readable=True, theme='pearl')
 #should be attached to 3_machine_learning_models.py
 #I separate them for clear illustration reasons.
 
-#re-organize data set
+#re-organize the data set
 sub_df_rf.iloc[:,1:] = preds_test
 sub_df_rf.to_csv('submission_rf.csv')
 uploaded = files.upload()
@@ -63,7 +63,7 @@ y_val = np.asarray(y_val).astype('float32')
 model = Sequential()
 #model.add(Embedding(MAX_NB_WORDS, EMBEDDING_DIM, input_length=train_df[features].shape[1]))
 #if you are working with the LSTM network, then you should first have an embedding layer
-#Dense(input_dim = X_train.shape[1]) will also help you to re-shape your data before calling model.fit() for the case of dense-dropout-dense
+#Dense(input_dim = X_train.shape[1]) will also help you to re-shape your data before calling model.fit()
 model.add(Dense(6, activation='relu', input_dim = X_train.shape[1]))
 model.add(Dropout(0.2))
 #model.add(LSTM(100, dropout=0.2, recurrent_dropout=0.2))
