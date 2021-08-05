@@ -78,7 +78,7 @@ print(model.summary())
 epochs = 5
 batch_size = 64
 
-#you might need this (line 58-61) -- depending on which version of TensorFlow you are working with
+#you might need this (line 86-89) -- depending on which version of TensorFlow you are working with
 #converting your labels to arrays before calling model.fit()
 #f you are working on TensorFlow 2.1.0, the following converting code will give you an ERROR, i.e., 
 #ValueError: Failed to convert a NumPy array to a Tensor (Unsupported object type float) (located at the line of model.fit())
