@@ -34,6 +34,6 @@ Similarly, numerous classification methods can be used here for multiclass/multi
 
 Note that this is the most basic multi-layer neural network architecture for multi-class classification with decent accuracy. There are many fancy variations, like bert, GPT, transformer, and attention model, with very high accuracy and dealing with many real-world limitations of the basic model, e.g., insufficient/imbalanced data. Please check other folders for details.
 
-Appreciate and welcome any types of contribution/discussion/pull requests!
+Appreciate and welcome any types of contribution/discussion/pulling requests!
 
 Contact: baohlcs@gmail.com
