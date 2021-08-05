@@ -32,7 +32,7 @@ cufflinks.set_config_file(world_readable=True, theme='pearl')
 sub_df_rf.iloc[:,1:] = preds_test
 sub_df_rf.to_csv('submission_rf.csv')
 uploaded = files.upload()
-final_submission_combined_updated = pd.read_csv('sample_submission.csv')
+final_submission_combined_updated = pd.read_csv('sample_submission.csv',error_bad_lines=False, engine="python")
 for label in label_col:
     final_submission_combined_updated[label] = 0.5*(sub_df_mnb[label]+sub_df_lr[label])
 final_submission_combined_updated.to_csv('final_submission_combined_updated.csv', index=False)
