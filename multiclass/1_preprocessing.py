@@ -80,6 +80,7 @@ train_df['comment_text'] = train_df['comment_text'].apply(cleanHtml)
 train_df['comment_text'] = train_df['comment_text'].apply(cleanPunc)
 train_df['comment_text'] = train_df['comment_text'].apply(keepAlpha)
 
+nltk.download('stopwords')
 stop_words = set(stopwords.words('english'))
 stop_words.update(['zero','one','two','three','four','five','six','seven','eight','nine','ten','may','also','across','among','beside','however','yet','within'])
 re_stop_words = re.compile(r"\b(" + "|".join(stop_words) + ")\\W", re.I)
