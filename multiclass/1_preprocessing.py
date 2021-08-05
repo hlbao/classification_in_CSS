@@ -40,10 +40,10 @@ warnings.filterwarnings("ignore")
 
 from google.colab import files
 uploaded = files.upload()
-train_df = pd.read_csv('train.csv')
+train_df =pd.read_csv('train.csv',error_bad_lines=False, engine="python")
 from google.colab import files
 uploaded = files.upload()
-test_df = pd.read_csv('test.csv')
+test_df =pd.read_csv('test.csv',error_bad_lines=False, engine="python")
 
 import nltk
 from nltk.corpus import stopwords
