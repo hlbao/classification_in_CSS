@@ -44,35 +44,50 @@ MAX_SEQUENCE_LENGTH = 250
 # This is fixed.
 EMBEDDING_DIM = 100
 
-X_train, X_val, y_train, y_val = train_test_split(train_df[features], train_df[label_col], test_size=0.2, random_state=2021)
-X_train = tf_idf_vect.transform(X_train['comment_text'])
-X_val = tf_idf_vect.transform(X_val['comment_text'])
-X_test = tf_idf_vect.transform(X_test['comment_text'])
-feature_names = tf_idf_vect.get_feature_names()
+tokenizer = Tokenizer(num_words=MAX_NB_WORDS, filters='!"#$%&()*+,-./:;<=>?@[\]^_`{|}~', lower=True)
+tokenizer.fit_on_texts(train_df[features].values)
+word_index = tokenizer.word_index
+
+X = tokenizer.texts_to_sequences(train_df[features].values)
+X = pad_sequences(X, maxlen=MAX_SEQUENCE_LENGTH)
+Y = pd.get_dummies(train_df[label_col]).values
+
+X_train, X_val, y_train, y_val = train_test_split(X, Y, test_size=0.2, random_state=2021)
+#X_train = tf_idf_vect.transform(X_train['comment_text'])
+#X_val = tf_idf_vect.transform(X_val['comment_text'])
+#X_test = tf_idf_vect.transform(X_test['comment_text'])
+#feature_names = tf_idf_vect.get_feature_names()
+
+model = Sequential()
+model.add(Embedding(MAX_NB_WORDS, EMBEDDING_DIM, input_length = X.shape[1]))
+#if you are working with the LSTM network, then you should first have an embedding layer
+#the purpose is to map your data into a proper dimensional setting before calling model.fit()
+#model.add(Dense(6, activation='relu', input_dim = X_train.shape[1])) will also help you to achieve that
+#input_length is the length of the input text data
+#input_dim is the dimension of the text data. 
+#For example, if the content of a piece of text data is: ['apple', 'apple', 'car']
+#one-hot encoding will be [[1 0], [1 0], [0 1]]. batch_size = 3, input_dim = 2, input_length = 3.
+model.add(SpatialDropout1D(0.2))
+#model.add(Dropout(0.2))
+model.add(LSTM(100, dropout=0.2, recurrent_dropout=0.2))
+model.add(Dense(6, activation='softmax'))
+model.compile(loss='categorical_crossentropy', optimizer='adam', metrics=['accuracy'])
+
+print(model.summary())
+
+epochs = 5
+batch_size = 64
 
 #you might need this (line 58-61) -- depending on which version of TensorFlow you are working with
 #converting your labels to arrays before calling model.fit()
 #f you are working on TensorFlow 2.1.0, the following converting code will give you an ERROR, i.e., 
 #ValueError: Failed to convert a NumPy array to a Tensor (Unsupported object type float) (located at the line of model.fit())
 #I run my code on TensorFlow 2.0.0.beta1
-X_train = np.asarray(X_train).astype('float32')
-y_train = np.asarray(y_train).astype('float32')
-X_val = np.asarray(X_val).astype('float32')
-y_val = np.asarray(y_val).astype('float32')
+#X_train = np.asarray(X_train).astype('float32')
+#y_train = np.asarray(y_train).astype('float32')
+#X_val = np.asarray(X_val).astype('float32')
+#y_val = np.asarray(y_val).astype('float32')
 
-model = Sequential()
-#model.add(Embedding(MAX_NB_WORDS, EMBEDDING_DIM, input_length=train_df[features].shape[1]))
-#if you are working with the LSTM network, then you should first have an embedding layer
-#Dense(input_dim = X_train.shape[1]) will also help you to re-shape your data before calling model.fit()
-model.add(Dense(6, activation='relu', input_dim = X_train.shape[1]))
-model.add(Dropout(0.2))
-#model.add(LSTM(100, dropout=0.2, recurrent_dropout=0.2))
-model.add(Dense(6, activation='softmax'))
-model.compile(loss='categorical_crossentropy', optimizer='adam', metrics=['accuracy'])
-#print(model.summary())
-epochs = 10
-batch_size = 32
-
-lstm_model = model.fit(X_train, y_train, epochs=epochs, batch_size=batch_size)
-#lstm_model = model.fit(X_train, y_train, epochs=epochs, batch_size=batch_size,validation_split=0.0,callbacks=[EarlyStopping(monitor='val_loss', patience=3, min_delta=0.0001)])
+#lstm_model = model.fit(X_train, y_train, epochs=epochs, batch_size=batch_size)
+lstm_model = model.fit(X_train, y_train, epochs=epochs, batch_size=batch_size,validation_split=0.0,callbacks=[EarlyStopping(monitor='val_loss', patience=3, min_delta=0.0001)])
 accr = model.evaluate(X_val,y_val)
