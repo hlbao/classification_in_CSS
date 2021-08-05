@@ -25,6 +25,6 @@ Acknowledge: The Summer Institutes in Computational Social Science 2021 (https:/
              Google developer documentation: Text classification (https://developers.google.com/machine-learning/guides/text-classification)
 
 
-Appreciate and welcome any types of contribution/discussion/pull requests!
+Appreciate and welcome any types of contribution/discussion/pulling requests!
 
 Contact: baohlcs@gmail.com
