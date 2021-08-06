@@ -51,6 +51,7 @@ word_index = tokenizer.word_index
 X = tokenizer.texts_to_sequences(train_df[features].values)
 X = pad_sequences(X, maxlen=MAX_SEQUENCE_LENGTH)
 Y = pd.get_dummies(train_df[label_col]).values
+#one-hot encoding
 
 X_train, X_val, y_train, y_val = train_test_split(X, Y, test_size=0.2, random_state=2021)
 #X_train = tf_idf_vect.transform(X_train['comment_text'])
