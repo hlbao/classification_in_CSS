@@ -13,7 +13,7 @@ I carry out a complete auto-multiclass-classification procedure:
 
 1. Preprocessing,
 converting text to lowercase, 
-removing special characters/stop words/permutations, expanding contractions, and so forth. 
+removing special characters/html/stop words/punctuation, expanding contractions, and so forth. 
 "cleaned.jpeg" illustrates the appearance of the preprocessed data set.
 Additionally, the data set of cleaned comment text has been uploaded. Please refer to cleaned.txt
 
