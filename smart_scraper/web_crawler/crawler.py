@@ -3,6 +3,26 @@ import pandas as pd
 import requests
 import urllib.request
 import time
+import requests
+import string
+import numpy as np
+import pandas as pd
+pd.options.mode.chained_assignment = None
+import matplotlib.pyplot as plt
+import seaborn as sb
+import json
+import nltk
+nltk.download('stopwords')
+from nltk.corpus import stopwords
+from nltk.tokenize import TweetTokenizer
+from collections import Counter
+import re
+import statsmodels.api as sm
+from numpy.linalg import LinAlgError
+from scipy.stats import ranksums
+import time
+import multiprocessing as mp
+from google.colab import files
 authors = []
 statements = []
 sources = []
@@ -41,7 +61,7 @@ def scrape_website(page_number):
     fact = i.find('div', attrs={'class':'c-image'}).find('img').get('alt')
     targets.append(fact)
 
-n=100
+n=1000
 for i in range(1, n+1):
   scrape_website(i)
 data = pd.DataFrame(columns = ['author',  'statement', 'source', 'target']) 
@@ -50,6 +70,28 @@ data['statement'] = statements
 data['source'] = sources
 data['target'] = targets
 
-data.to_csv('political_fact_dataset.csv')
+stops = stopwords.words('english')
+#Add tokens to our list of stop words
+stops += ['.',',','’',':','&','!','qt','-','"','?','“','”',')','(','/',"'",'–',
+          '*',';','‘','>','<']
+#Remove tokens from our list of stop words
+for w in ['he','we','she','our','if']:
+  stops.remove(w)
+tknzr = TweetTokenizer()
+def clean_statement(s, stops=stops, tknzr=tknzr):
+  #lowercase the string
+  s = s.lower()
+  #tokenize the string
+  s = tknzr.tokenize(s)
+  #remove stop words
+  s = [w for w in s if w not in stops]
+  #remove empty string chunks
+  s = [w for w in s if len(w) > 0]
+  return s
+
+data.statement = data.statement.apply(clean_statement)
+data = data[data.statement.apply(lambda x: len(x) > 0)]
+
+data.to_csv('clean_political_fact_dataset.csv')
 from google.colab import files
-files.download("political_fact_dataset.csv")
+files.download("clean_political_fact_dataset.csv")
