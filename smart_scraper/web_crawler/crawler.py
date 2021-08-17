@@ -47,3 +47,17 @@ def scrape_website(page_number):
   for i in target:
     fact = i.find('div', attrs={'class':'c-image'}).find('img').get('alt')
     targets.append(fact)
+
+#From October 22, 2009 to August 12, 2021
+n=21069
+for i in range(1, n+1):
+  scrape_website(i)
+#Create a new dataFrame 
+data = pd.DataFrame(columns = ['author',  'statement', 'source', 'date', 'target']) 
+data['author'] = authors
+data['statement'] = statements
+data['source'] = sources
+data['date'] = dates
+data['target'] = targets
+
+data.to_csv('political_fact_dataset.csv')
