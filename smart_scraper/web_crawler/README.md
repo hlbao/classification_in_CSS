@@ -1,1 +1,1 @@
-Scraping PolitiFact.com to compile a data set of political news classified into multiple categories (false, pants-fire, barely-true, half-true, mostly-true, and true).
+Scraping PolitiFact.com to compile a data set of political news classified into multiple categories (false, pants-fire, barely-true, half-true, mostly-true, and true). Code and the data set "political_fact_dataset.csv" have been uploaded.
