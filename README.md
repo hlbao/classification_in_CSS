@@ -1,4 +1,4 @@
-# Classification in Computational Social Science Computational Social Science (Under Construction)
+# Classification in Computational Social Science (Under Construction)
 
 Computational social science research necessitates the processing of massive amounts of textual data ranging from digital traces for social media research to publication data for Science of Science research. 
 This GitHub repository will provide an overview of the most frequently used techniques in computational social science for dealing with textual data: scraping to obtain datasets, pre-processing to clean the data, and finally, automatic classification.
