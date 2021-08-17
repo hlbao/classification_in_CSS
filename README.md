@@ -12,3 +12,9 @@ I cover the following subjects:
 5. Model evaluation: What metrics should we consider when evaluating a designed machine learning model? (refer to slides).
 
 Nota bene, 1, 2, and 3 are basic operations with accompanying code and detailed comments/explanations. 4 and 5 are more advanced subjects with a substantial body of literature. Please refer to the slides for additional information.
+
+Acknowledge: The Summer Institutes in Computational Social Science 2021 (https://sicss.io/) 
+
+Appreciate and welcome any types of contribution/discussion/pulling requests!
+
+Contact: baohlcs@gmail.com
