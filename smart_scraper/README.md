@@ -2,6 +2,6 @@ This folder contains various scrapers, including a text-based digital trace data
 
 1. Tutorials for the Twitter API are available at https://developer.twitter.com/en/docs/twitter-api/tutorials.
 
-2. Check the corresponding folder for the Python package for scraping YouTube comments
+2. Check out the corresponding folder for the Python package for scraping YouTube comments.
 
-3. I also created a web scraper to collect and clean text data (political news).
+3. I also created a web scraper to collect and clean text data (political news). 
