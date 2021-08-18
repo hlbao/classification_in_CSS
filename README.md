@@ -10,7 +10,7 @@ I cover the following subjects:
 3. Classification of social media comments into multiple classes to determine their toxicity degrees or sentiments (check out the corresponding folder).
 4. Several advanced techniques for dealing with unusual situations, such as insufficient text data or imbalanced text data across classes (refer to slides).
 5. Model evaluation: What metrics should we consider when evaluating a designed machine learning model? (refer to slides).
-6. A brief introduction to some fancy, famous, but heavy-weight deep learning models that have the potential to achieve highly accurate text classification performance.
+6. A brief introduction to some fancy, famous, but heavy-weight deep learning models that have the potential to achieve highly accurate text classification performance (refer to slides).
 
 Nota bene, 1, 2, and 3 are basic operations with accompanying code and detailed comments/explanations. 4, 5, and 6 are more advanced subjects with a substantial body of literature. Please refer to the slides for details.
 
