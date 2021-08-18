@@ -1,8 +1,6 @@
 #acknowledgment: "Introduction to Text Analysis in Python: A Hands-on Tutorial" at Summer Institute in Computational Social Science 2021.
 
 import requests
-pd.options.mode.chained_assignment = None
-
 bearer_token = "AAAAAAAAAAAAAAAAAAAAAHnOSAEAAAAAWKmBmaqipWHUCz%2BiZMIoRO%2FG1ts%3DH3ymJKodPukYp4NO6ekLqAB4NBVWoVVydMpQ3LNDgZoKg7Mrs4"
 tweet_fields = ["text", "public_metrics", "created_at", "author_id", "geo"]
 
