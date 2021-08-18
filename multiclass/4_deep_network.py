@@ -46,7 +46,6 @@ EMBEDDING_DIM = 100
 
 tokenizer = Tokenizer(num_words=MAX_NB_WORDS, filters='!"#$%&()*+,-./:;<=>?@[\]^_`{|}~', lower=True)
 tokenizer.fit_on_texts(train_df[features].values)
-word_index = tokenizer.word_index
 
 X = tokenizer.texts_to_sequences(train_df[features].values)
 X = pad_sequences(X, maxlen=MAX_SEQUENCE_LENGTH)
