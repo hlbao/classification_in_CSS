@@ -1,0 +1,3 @@
+https://www.dropbox.com/s/ab7f2d0q0woxs82/new_cleaned.csv?dl=0
+
+This Dropbox link shares the dataset "new_cleaned.csv" for lexicon-based sentiment analysis, which is too large to be directly uploaded to GitHub.
