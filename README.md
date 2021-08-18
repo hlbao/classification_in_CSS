@@ -7,7 +7,7 @@ I cover the following subjects:
 
 1. Scrapers: API-based or manually constructed tools for scraping websites or social media platforms such as Twitter/YouTube (check out the corresponding folder).
 2. Binary classification of Twitter posts to infer their ideology (republican or democrat) (check out the corresponding folder).
-3. Classification of social media comments into multiple classes to determine their toxicity degree (check out the corresponding folder).
+3. Classification of social media comments into multiple classes to determine their toxicity degrees or sentiments (check out the corresponding folder).
 4. Several advanced techniques for dealing with unusual situations, such as insufficient text data or imbalanced text data across classes (refer to slides).
 5. Model evaluation: What metrics should we consider when evaluating a designed machine learning model? (refer to slides).
 6. A brief introduction to some fancy, famous, but heavy-weight deep learning models that have the potential to achieve highly accurate text classification performance.
