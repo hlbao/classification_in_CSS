@@ -1,6 +1,6 @@
 new_cleaned.csv
 new_cleaned.csv(text/csv) - 35491232 bytes, last modified: 8/18/2021 - 100% done
-Saving new_cleaned.csv to new_cleaned (9).csv
+Saving new_cleaned.csv to new_cleaned.csv
 lexicon_table.csv
 lexicon_table.csv(text/csv) - 98205 bytes, last modified: 8/18/2021 - 100% done
 Streaming output truncated to the last 5000 lines.
