@@ -1,5 +1,7 @@
 # Classification in Computational Social Science (Under Construction)
 
+Created and maintained by Honglin Bao, summer 2021. Contact: baohlcs@gmail.com
+
 Computational social science research necessitates the processing of massive amounts of textual data ranging from digital traces for social media research to publication data for Science of Science research. 
 This GitHub repository will provide an overview of the most frequently used techniques in computational social science for dealing with textual data: scraping to obtain datasets, pre-processing to clean the data, and finally, automatic classification.
 
@@ -14,8 +16,6 @@ I cover the following subjects:
 
 Nota bene, 1, 2, and 3 are basic operations with accompanying code and detailed comments/explanations. 4, 5, and 6 are more advanced subjects with a substantial body of literature. Please refer to the slides for details.
 
-Acknowledge: The Summer Institutes in Computational Social Science 2021 (https://sicss.io/) 
+Acknowledgment: The Summer Institutes in Computational Social Science 2021 (https://sicss.io/) 
 
 Appreciate and welcome any types of contribution/discussion/pulling requests!
-
-Contact: baohlcs@gmail.com
