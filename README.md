@@ -18,4 +18,4 @@ Nota bene, 1, 2, and 3 are basic operations with accompanying code and detailed 
 
 Acknowledgment: The Summer Institutes in Computational Social Science 2021 (https://sicss.io/) 
 
-Appreciate and welcome any types of contribution/discussion/pulling requests!
+Appreciate and welcome any types of contribution/discussion/pulling requests.
