@@ -1,4 +1,4 @@
-# Classification in Computational Social Science (Under Construction)
+# Classification in Computational Social Science 
 
 Created and maintained by Honglin Bao, summer 2021. Contact: baohlcs@gmail.com
 
