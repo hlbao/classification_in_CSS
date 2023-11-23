@@ -1,6 +1,6 @@
 # Classification in Computational Social Science 
 
-Created and maintained by Honglin Bao, summer 2021. Contact: baohlcs@gmail.com
+Created and maintained by Honglin Bao, summer 2021 @ Michigan State Department of Communication, Computational Communication Group. Contact: baohlcs@gmail.com
 
 Computational social science research necessitates the processing of massive amounts of textual data ranging from digital traces for social media research to publication data for Science of Science research. 
 This GitHub repository will provide an overview of the most frequently used techniques in computational social science (notably political communication) for dealing with textual data: scraping to obtain datasets, pre-processing to clean the data, and finally, automatic classification.
